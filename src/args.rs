@@ -1,4 +1,4 @@
-use clap::{Arg, App};
+use clap::{App, Arg};
 
 pub struct Args {
     pub path: String,
@@ -9,7 +9,7 @@ pub struct Args {
 
 pub fn get_args() -> Result<Args, String> {
     let check_year = |x: String| -> Result<(), String> {
-        x.parse::<u32>().map(|_|()).map_err(|x| x.to_string())
+        x.parse::<u32>().map(|_| ()).map_err(|x| x.to_string())
     };
 
     let check_week = |x: String| -> Result<(), String> {
@@ -23,15 +23,33 @@ pub fn get_args() -> Result<Args, String> {
 
     let matches = App::new("Make beautiful text report from Excel files")
         .about("Does awesome things")
-        .arg(Arg::with_name("file").required(true).help("Path to Excel file to read data from"))
+        .arg(
+            Arg::with_name("file")
+                .required(true)
+                .help("Path to Excel file to read data from"),
+        )
         .arg(Arg::with_name("worksheet").required(true))
         .arg(Arg::with_name("rcpt").required(true))
-        .arg(Arg::with_name("year").long("year").validator(check_year).requires("week").takes_value(true))
-        .arg(Arg::with_name("week").long("week").validator(check_week).requires("year").takes_value(true))
+        .arg(
+            Arg::with_name("year")
+                .long("year")
+                .validator(check_year)
+                .requires("week")
+                .takes_value(true),
+        )
+        .arg(
+            Arg::with_name("week")
+                .long("week")
+                .validator(check_week)
+                .requires("year")
+                .takes_value(true),
+        )
         .get_matches();
 
     let get = |a: &str| {
-        matches.value_of(a).ok_or_else(|| format!("failed to read arg {}", a))
+        matches
+            .value_of(a)
+            .ok_or_else(|| format!("failed to read arg {}", a))
     };
 
     let year_week = match (matches.value_of("year"), matches.value_of("week")) {
@@ -39,15 +57,15 @@ pub fn get_args() -> Result<Args, String> {
             let year = y_str.parse::<u32>().expect("failed to parse year");
             let week = w_str.parse::<u8>().expect("failed to parse week");
             Some((year, week))
-        },
-        _ => None
+        }
+        _ => None,
     };
 
     let a = Args {
         path: get("file")?.to_string(),
         worksheet: get("worksheet")?.to_string(),
         year_week,
-        rcpt: get("rcpt")?.to_string()
+        rcpt: get("rcpt")?.to_string(),
     };
 
     Ok(a)

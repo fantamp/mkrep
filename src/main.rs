@@ -1,12 +1,11 @@
+mod args;
 mod data;
-mod render;
 mod read;
 mod read_excel;
-mod args;
+mod render;
 
 #[cfg(test)]
 mod test_data;
-
 
 /*
 TODO:
@@ -40,17 +39,15 @@ TODO:
         Make integration tests
 */
 
-
 fn main() {
     match do_everything() {
         Err(s) => {
             eprintln!("Error: {}", s);
             std::process::exit(1);
-        },
+        }
         _ => {}
     }
 }
-
 
 fn do_everything() -> Result<(), String> {
     let a = args::get_args()?;
@@ -60,11 +57,12 @@ fn do_everything() -> Result<(), String> {
     let yw = if let Some(yw) = a.year_week {
         yw
     } else {
-        read::get_recent_year_and_week(data.iter())?.ok_or_else(|| "failed to find recent year and week in excel file")?
+        read::get_recent_year_and_week(data.iter())?
+            .ok_or_else(|| "failed to find recent year and week in excel file")?
     };
 
     let rep = read::load_report_from_table(data.iter(), yw.0, yw.1, &a.rcpt)?;
-    
+
     let mut stdout = std::io::stdout();
     render::render_report(&rep, &mut stdout)?;
 

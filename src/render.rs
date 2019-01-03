@@ -1,21 +1,21 @@
 use crate::data::*;
 use std::io::Write;
 
-
 pub fn render_record(r: &Record, to: &mut Write) -> std::io::Result<()> {
     write!(to, "— {}\n", r.title)?;
     write!(to, "{}\n", r.main_text)?;
 
     match r.addit_text {
-        Some(ref t) => { write!(to, "{}\n", t)?; }
-        _ => ()
+        Some(ref t) => {
+            write!(to, "{}\n", t)?;
+        }
+        _ => (),
     }
 
     write!(to, "\n")?;
 
     Ok(())
 }
-
 
 pub fn render_topic(topic: &Topic, to: &mut Write) -> std::io::Result<()> {
     write!(to, "{}\n", topic.title)?;
@@ -31,14 +31,12 @@ pub fn render_topic(topic: &Topic, to: &mut Write) -> std::io::Result<()> {
     Ok(())
 }
 
-
 pub fn render_report(rep: &Report, to: &mut Write) -> Result<(), String> {
     for t in &rep.topics {
         render_topic(t, to).map_err(|e| e.to_string())?;
     }
     Ok(())
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -57,4 +55,3 @@ mod tests {
     }
 
 }
-
