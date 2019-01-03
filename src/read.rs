@@ -170,8 +170,7 @@ fn load_report_from_stream(
 ) -> Result<Report, String> {
     let fields: Vec<Vec<String>> = BufReader::new(f)
         .lines()
-        .map(|x| x.expect("testing expect"))
-        .map(|x| split_line(&x))
+        .map(|x| split_line(&x.expect("testing expect")))
         .collect();
     load_report_from_table(fields.iter(), year, week, rcpt)
 }
