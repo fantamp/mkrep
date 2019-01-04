@@ -24,16 +24,13 @@ TODO:
 
     Tech things:
         extract constants to const
-        rustfmt
         different readers
         find .clone() and other places where changing to & would be possible
-        find and fix all FIXME lines
-        get rid of csv crate
 
     Learning things:
         √ Why doesn't documentation tests run?
-        https://doc.rust-lang.org/edition-guide/rust-2018/control-flow/loops-can-break-with-a-value.html
-        diff between 'extern crate X' and 'use X' and whether the first is mandatory
+        √ https://doc.rust-lang.org/edition-guide/rust-2018/control-flow/loops-can-break-with-a-value.html
+        √ diff between 'extern crate X' and 'use X' and whether the first is mandatory
         √ How to make my own iterator from yielding closure
         Organize rendereres in subdirs
         Make integration tests
