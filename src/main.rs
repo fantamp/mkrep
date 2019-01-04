@@ -9,22 +9,11 @@ mod test_data;
 
 /*
 TODO:
-    MVP
-        - read from tab-separated utf file
-        - make simple text report to stdout
-
-    Ver2
-        - make html report
-
-    Ver3
-        - read from Excel
-
-    Ver4
+    Backlog
         - support images
 
     Tech things:
         extract constants to const
-        different readers
         find .clone() and other places where changing to & would be possible
 
     Learning things:
@@ -32,7 +21,7 @@ TODO:
         √ https://doc.rust-lang.org/edition-guide/rust-2018/control-flow/loops-can-break-with-a-value.html
         √ diff between 'extern crate X' and 'use X' and whether the first is mandatory
         √ How to make my own iterator from yielding closure
-        Organize rendereres in subdirs
+        √ Organize rendereres in subdirs
         Make integration tests
 */
 
