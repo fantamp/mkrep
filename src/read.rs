@@ -162,7 +162,7 @@ where
 }
 
 #[allow(dead_code)]
-fn load_report_from_stream(
+pub fn load_report_from_stream(
     f: &mut Read,
     year: u32,
     week: u8,
@@ -183,14 +183,6 @@ fn make_topic(title: &str) -> Topic {
     }
 }
 
-/// Make RawFields from tab-separated report line
-///
-/// # Examples
-///
-/// let rec = split_line("Year\tWeek\tTopic\tTitle\tText\tSH:Prio\tTeam:prio");
-/// assert_eq!(rec[0], "Year");
-/// assert_eq!(rec[6], "Team:prio");
-/// assert_eq!(rec.len(), 7);
 fn split_line(line: &str) -> RawFields {
     line.split('\t').map(|x| x.to_string()).collect()
 }

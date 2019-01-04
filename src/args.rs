@@ -1,3 +1,4 @@
+use crate::render::OutputFormat;
 use clap::{App, Arg};
 
 pub struct Args {
@@ -5,6 +6,7 @@ pub struct Args {
     pub worksheet: String,
     pub year_week: Option<(u32, u8)>,
     pub rcpt: String,
+    pub format: OutputFormat,
 }
 
 pub fn get_args() -> Result<Args, String> {
@@ -44,6 +46,12 @@ pub fn get_args() -> Result<Args, String> {
                 .requires("year")
                 .takes_value(true),
         )
+        .arg(
+            Arg::with_name("format")
+                .long("format")
+                .possible_values(&["html", "text"])
+                .default_value("html"),
+        )
         .get_matches();
 
     let get = |a: &str| {
@@ -61,11 +69,18 @@ pub fn get_args() -> Result<Args, String> {
         _ => None,
     };
 
+    let format = match matches.value_of("format") {
+        Some("html") => OutputFormat::Html,
+        Some("text") => OutputFormat::Text,
+        _ => panic!("Unknown output format"),
+    };
+
     let a = Args {
         path: get("file")?.to_string(),
         worksheet: get("worksheet")?.to_string(),
         year_week,
         rcpt: get("rcpt")?.to_string(),
+        format,
     };
 
     Ok(a)

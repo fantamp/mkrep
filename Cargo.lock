@@ -153,6 +153,11 @@ dependencies = [
 ]
 
 [[package]]
+name = "htmlescape"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
 name = "libc"
 version = "0.2.45"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -192,6 +197,7 @@ dependencies = [
  "calamine 0.15.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "chrono 0.4.6 (registry+https://github.com/rust-lang/crates.io-index)",
  "clap 2.32.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "htmlescape 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -384,6 +390,7 @@ dependencies = [
 "checksum encoding_rs 0.8.13 (registry+https://github.com/rust-lang/crates.io-index)" = "1a8fa54e6689eb2549c4efed8d00d7f3b2b994a064555b0e8df4ae3764bcc4be"
 "checksum failure 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)" = "e945b93ec214c6e97b520ec6c5d80267fc97af327658ee5b9f35984626e51fbf"
 "checksum failure_derive 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)" = "7c395a14ab27b42704e85bf2435c5c51f334ad7a96e16fe23c6e63a1cad6cc12"
+"checksum htmlescape 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)" = "e9025058dae765dee5070ec375f591e2ba14638c63feff74f13805a72e523163"
 "checksum libc 0.2.45 (registry+https://github.com/rust-lang/crates.io-index)" = "2d2857ec59fadc0773853c664d2d18e7198e83883e7060b63c924cb077bd5c74"
 "checksum libflate 0.1.19 (registry+https://github.com/rust-lang/crates.io-index)" = "bff3ac7d6f23730d3b533c35ed75eef638167634476a499feef16c428d74b57b"
 "checksum log 0.4.6 (registry+https://github.com/rust-lang/crates.io-index)" = "c84ec4b527950aa83a329754b01dbe3f58361d1c5efacd1f6d68c494d08a17c6"

@@ -61,7 +61,7 @@ fn do_everything() -> Result<(), String> {
     let rep = read::load_report_from_table(data.iter(), yw.0, yw.1, &a.rcpt)?;
 
     let mut stdout = std::io::stdout();
-    render::render_report(&rep, &mut stdout)?;
+    render::render(&rep, a.format, &mut stdout)?;
 
     Ok(())
 }
