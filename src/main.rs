@@ -22,7 +22,7 @@ TODO:
         √ diff between 'extern crate X' and 'use X' and whether the first is mandatory
         √ How to make my own iterator from yielding closure
         √ Organize rendereres in subdirs
-        Make integration tests
+        √ Make integration tests
 */
 
 fn main() {
