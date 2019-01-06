@@ -223,8 +223,12 @@ mod tests {
         let mut buf = Cursor::new(Vec::new());
         assert!(write!(&mut buf, "{}", get_test_file_text_with_bad_year()).is_ok());
         buf.set_position(0);
-        let err = super::load_report_from_stream(&mut buf, 2018, 52, "SH").err().unwrap();
-        assert!(err.find("failed to parse Year field value: invalid digit found in string").is_some());
+        let err = super::load_report_from_stream(&mut buf, 2018, 52, "SH")
+            .err()
+            .unwrap();
+        assert!(err
+            .find("failed to parse Year field value: invalid digit found in string")
+            .is_some());
     }
 
     #[test]
@@ -232,8 +236,12 @@ mod tests {
         let mut buf = Cursor::new(Vec::new());
         assert!(write!(&mut buf, "{}", get_test_file_text_with_bad_week()).is_ok());
         buf.set_position(0);
-        let err = super::load_report_from_stream(&mut buf, 2018, 52, "SH").err().unwrap();
-        assert!(err.find("failed to parse Week field value: invalid digit found in string").is_some());
+        let err = super::load_report_from_stream(&mut buf, 2018, 52, "SH")
+            .err()
+            .unwrap();
+        assert!(err
+            .find("failed to parse Week field value: invalid digit found in string")
+            .is_some());
     }
 
 }
