@@ -36,7 +36,7 @@ fn main() {
 }
 
 fn do_everything() -> Result<(), String> {
-    let a = args::get_args()?;
+    let a = crate::args::get_args()?;
 
     let data = read_excel::read_excel_to_vec(&a.path, &a.worksheet)?;
 

@@ -12,6 +12,18 @@ pub fn get_test_file_text() -> &'static str {
 }
 
 #[cfg(test)]
+pub fn get_test_file_text_with_bad_year() -> &'static str {
+    "Year\tWeek\tTopic\tTitle\tText\tSH:Rank\tTeam:Rank\tSH:Text\tTeam:Text\n\
+    zzz\t52\tЛюди\tНайм: статус\tКрасота зимнего периода состоит в особом\t1\t1\t\t\n"
+}
+
+#[cfg(test)]
+pub fn get_test_file_text_with_bad_week() -> &'static str {
+    "Year\tWeek\tTopic\tTitle\tText\tSH:Rank\tTeam:Rank\tSH:Text\tTeam:Text\n\
+    2019\tпервая неделя\tЛюди\tНайм: статус\tКрасота зимнего периода состоит в особом\t1\t1\t\t\n"
+}
+
+#[cfg(test)]
 pub fn make_dummy_report() -> Report {
     load_report_from_string(get_test_file_text())
 }

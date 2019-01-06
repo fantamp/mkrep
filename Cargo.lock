@@ -191,7 +191,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "mkmsg"
+name = "mkrep"
 version = "0.1.0"
 dependencies = [
  "calamine 0.15.3 (registry+https://github.com/rust-lang/crates.io-index)",

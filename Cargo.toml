@@ -1,5 +1,5 @@
 [package]
-name = "mkmsg"
+name = "mkrep"
 version = "0.1.0"
 authors = ["Andrey Mescheryakov <fant.amp@gmail.com>"]
 edition = "2018"

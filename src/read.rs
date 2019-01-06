@@ -190,7 +190,7 @@ fn split_line(line: &str) -> RawFields {
 #[cfg(test)]
 mod tests {
     use super::split_line;
-    use crate::test_data::get_test_file_text;
+    use crate::test_data::*;
     use std::io::Cursor;
     use std::io::Write;
 
@@ -216,6 +216,24 @@ mod tests {
         assert_eq!(rep.topics.len(), 3);
         assert_eq!(rep.topics[0].title, "Crust");
         assert_eq!(rep.topics[0].records[0].title, "Snowball earth");
+    }
+
+    #[test]
+    fn bad_year_format() {
+        let mut buf = Cursor::new(Vec::new());
+        assert!(write!(&mut buf, "{}", get_test_file_text_with_bad_year()).is_ok());
+        buf.set_position(0);
+        let err = super::load_report_from_stream(&mut buf, 2018, 52, "SH").err().unwrap();
+        assert!(err.find("failed to parse Year field value: invalid digit found in string").is_some());
+    }
+
+    #[test]
+    fn bad_week_format() {
+        let mut buf = Cursor::new(Vec::new());
+        assert!(write!(&mut buf, "{}", get_test_file_text_with_bad_week()).is_ok());
+        buf.set_position(0);
+        let err = super::load_report_from_stream(&mut buf, 2018, 52, "SH").err().unwrap();
+        assert!(err.find("failed to parse Week field value: invalid digit found in string").is_some());
     }
 
 }
