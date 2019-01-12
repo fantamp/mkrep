@@ -15,6 +15,9 @@ fn render_html(rep: &Report, to: &mut Write) -> std::io::Result<()> {
   body {{
     font-family: Arial, sans;
   }}
+  h2 {{
+      margin-top: 50px;
+  }}
 </style>
 </head><body>
 "#
@@ -41,12 +44,18 @@ fn render_topic(topic: &Topic, to: &mut Write) -> std::io::Result<()> {
     Ok(())
 }
 
+fn prepare_text(s: &str) -> String {
+    let encoded = htmlescape::encode_minimal(s);
+    let with_br = encoded.replace("\n", "<br/>");
+    with_br
+}
+
 fn render_record(r: &Record, to: &mut Write) -> std::io::Result<()> {
     write!(to, "<h3>{}</h3>\n", htmlescape::encode_minimal(&r.title))?;
-    write!(to, "<p>{}</p>\n", htmlescape::encode_minimal(&r.main_text))?;
+    write!(to, "<p>{}</p>\n", prepare_text(&r.main_text))?;
 
     if let Some(ref t) = r.addit_text {
-        write!(to, "<p>{}</p>\n", htmlescape::encode_minimal(t))?;
+        write!(to, "<p>{}</p>\n", prepare_text(t))?;
     }
 
     Ok(())
