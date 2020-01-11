@@ -1,11 +1,11 @@
 use crate::data::*;
 use std::io::Write;
 
-pub fn render(rep: &Report, to: &mut Write) -> Result<(), String> {
+pub fn render(rep: &Report, to: &mut dyn Write) -> Result<(), String> {
     render_html(rep, to).map_err(|e| e.to_string())
 }
 
-fn render_html(rep: &Report, to: &mut Write) -> std::io::Result<()> {
+fn render_html(rep: &Report, to: &mut dyn Write) -> std::io::Result<()> {
     write!(
         to,
         r#"<html>
@@ -31,7 +31,7 @@ fn render_html(rep: &Report, to: &mut Write) -> std::io::Result<()> {
     Ok(())
 }
 
-fn render_topic(topic: &Topic, to: &mut Write) -> std::io::Result<()> {
+fn render_topic(topic: &Topic, to: &mut dyn Write) -> std::io::Result<()> {
     write!(
         to,
         "<h2>{}</h2>\n",
@@ -50,7 +50,7 @@ fn prepare_text(s: &str) -> String {
     with_br
 }
 
-fn render_record(r: &Record, to: &mut Write) -> std::io::Result<()> {
+fn render_record(r: &Record, to: &mut dyn Write) -> std::io::Result<()> {
     write!(to, "<h3>{}</h3>\n", htmlescape::encode_minimal(&r.title))?;
     write!(to, "<p>{}</p>\n", prepare_text(&r.main_text))?;
 

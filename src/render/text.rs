@@ -1,7 +1,7 @@
 use crate::data::*;
 use std::io::Write;
 
-pub fn render_record(r: &Record, to: &mut Write) -> std::io::Result<()> {
+pub fn render_record(r: &Record, to: &mut dyn Write) -> std::io::Result<()> {
     write!(to, "— {}\n", r.title)?;
     write!(to, "{}\n", r.main_text)?;
 
@@ -17,7 +17,7 @@ pub fn render_record(r: &Record, to: &mut Write) -> std::io::Result<()> {
     Ok(())
 }
 
-pub fn render_topic(topic: &Topic, to: &mut Write) -> std::io::Result<()> {
+pub fn render_topic(topic: &Topic, to: &mut dyn Write) -> std::io::Result<()> {
     write!(to, "{}\n", topic.title)?;
     for _ in 0..topic.title.chars().count() {
         write!(to, "~")?;
@@ -31,7 +31,7 @@ pub fn render_topic(topic: &Topic, to: &mut Write) -> std::io::Result<()> {
     Ok(())
 }
 
-pub fn render(rep: &Report, to: &mut Write) -> Result<(), String> {
+pub fn render(rep: &Report, to: &mut dyn Write) -> Result<(), String> {
     for t in &rep.topics {
         render_topic(t, to).map_err(|e| e.to_string())?;
     }

@@ -163,7 +163,7 @@ where
 
 #[allow(dead_code)]
 pub fn load_report_from_stream(
-    f: &mut Read,
+    f: &mut dyn Read,
     year: u32,
     week: u8,
     rcpt: &str,

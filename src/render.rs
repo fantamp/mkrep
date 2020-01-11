@@ -8,7 +8,7 @@ pub enum OutputFormat {
     Html,
 }
 
-pub fn render(rep: &Report, format: OutputFormat, to: &mut Write) -> Result<(), String> {
+pub fn render(rep: &Report, format: OutputFormat, to: &mut dyn Write) -> Result<(), String> {
     match format {
         OutputFormat::Text => text::render(rep, to),
         OutputFormat::Html => html::render(rep, to),
